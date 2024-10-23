@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veritas University</title>
+
+  <link rel="icon" href="https://admission.veritas.edu.ng/ui/dist/img/vuna.png" type="image/x-icon" >
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://admission.veritas.edu.ng/ui/plugins/fontawesome-free/css/all.min.css ">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="https://admission.veritas.edu.ng/ui/dist/css/adminlte.min.css">
+
+  <link rel="stylesheet" href="https://admission.veritas.edu.ng/ui/dist/css/custom_style.css">
+
+  <link rel="stylesheet" type="text/css" href="https://admission.veritas.edu.ng/ui/plugins/toastr/toastr.min.css">
+
+    <!-- Select2 -->
+    <link rel="stylesheet" href="https://admission.veritas.edu.ng/ui/plugins/select2/css/select2.min.css ">
+
+    <link rel="stylesheet" href="https://admission.veritas.edu.ng/ui/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css ">
+
+    <link rel="stylesheet" href="https://admission.veritas.edu.ng/ui/plugins/multilevel-form/multi_level.css ">
+
+    <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css" rel="stylesheet">
+
+  <!-- Livewire Styles -->
+<style >
+    [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {
+        display: none;
+    }
+
+    [wire\:loading\.delay\.shortest], [wire\:loading\.delay\.shorter], [wire\:loading\.delay\.short], [wire\:loading\.delay\.long], [wire\:loading\.delay\.longer], [wire\:loading\.delay\.longest] {
+        display:none;
+    }
+
+    [wire\:offline] {
+        display: none;
+    }
+
+    [wire\:dirty]:not(textarea):not(input):not(select) {
+        display: none;
+    }
+
+    input:-webkit-autofill, select:-webkit-autofill, textarea:-webkit-autofill {
+        animation-duration: 50000s;
+        animation-name: livewireautofill;
+    }
+
+    @keyframes livewireautofill { from {} }
+</style>
+
+  </head>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+            
+            <nav class="main-header navbar navbar-expand navbar-success navbar-dark" style="background-color: #10a310;">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a  href="#" class="nav-link" data-widget="pushmenu"  role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="https://admission.veritas.edu.ng/student/dashboard" class="nav-link">Home</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">ABIOLA ANJOLAOLUWA MARTINS</a>
+        </li>
+      <!-- Navbar Search -->
+
+
+      <!-- Messages Dropdown Menu -->
+
+      <!-- Notifications Dropdown Menu -->
+
+
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="" data-toggle="dropdown" href="#">
+          <div class="user-panel d-flex">
+                <div class="image">
+                                            <img src="data:image/jpeg;base64,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" class="img-circle" alt="User Image">
+                                    </div>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-header"> Settings</span>
+          <div class="dropdown-divider"></div>
+          <a href="https://admission.veritas.edu.ng/student/my-profile" class="dropdown-item">
+            <i class="fas fa-user mr-2"></i> View Profile
+          </a>
+          <a href="https://admission.veritas.edu.ng/student/change-password" class="dropdown-item mt-2">
+            <i class="fas fa-key mr-2"></i> Change Password
+          </a>
+          <div class="dropdown-divider"></div>
+          <form action="https://admission.veritas.edu.ng/student/logout" method="POST">
+            <input type="hidden" name="_token" value="EIjD3pMjLPZZZog0aD0qQwqwBeyYRmIvbpkx8FeN">            <a href="https://admission.veritas.edu.ng/student/logout" onclick="event.preventDefault(); this.closest('form').submit();" class="dropdown-item ">
+                <i class="nav-icon fas fa-sign-out-alt mr-2"></i>Logout
+            </a>
+        </form>
+          <div class="dropdown-divider"></div>
+        </div>
+      </li>
+    </ul>
+</nav>
+
+            
+    <!-- Main Sidebar Container -->
+    
+        
+            <aside class="main-sidebar sidebar-dark-success elevation-4">
+    <!-- Brand Logo -->
+    <a href="https://admission.veritas.edu.ng/student/dashboard" class="brand-link">
+      <img src="https://admission.veritas.edu.ng/ui/dist/img/vuna.png" alt="Veritas Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Veritas E-Campus</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="https://admission.veritas.edu.ng/student/dashboard" class="nav-link">
+                  <i class="nav-icon fas fa-th"></i>
+                  <p>
+                  Dashboard
+                  </p>
+              </a>
+            </li>
+            
+                                    <li class="nav-item">
+                        
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#" class="nav-link     ">
+                            <i class="far fa-credit-card nav-icon"></i>
+                            <p>
+                                Finance
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a  href="https://admission.veritas.edu.ng/student/regular/payments/select-hostel" class="nav-link  ">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Pay Tuition Fee</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="https://admission.veritas.edu.ng/student/regular/payments/other-payment" class="nav-link  ">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>Pay Other Fees</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://admission.veritas.edu.ng/student/regular/payments/payment-history" class="nav-link  ">
+                                    <i class="nav-icon far fa-dot-circle"></i>
+                                    <p>
+                                        Payment History
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a  href="https://admission.veritas.edu.ng/student/regular/payments/rrr-history" class="nav-link  ">
+                                    <i class="far fa-dot-circle nav-icon"></i>
+                                    <p>RRR History</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://admission.veritas.edu.ng/student/regular/select-category" class="nav-link  ">
+                            <i class="nav-icon fa fa-home"></i>
+                            <p>
+                                Accomodation
+                            </p>
+                        </a>
+                    </li>
+                
+                
+                
+
+                        <li class="nav-item">
+                <form action="https://admission.veritas.edu.ng/student/logout" method="POST">
+                    <input type="hidden" name="_token" value="EIjD3pMjLPZZZog0aD0qQwqwBeyYRmIvbpkx8FeN">                    <a href="https://admission.veritas.edu.ng/student/logout" onclick="event.preventDefault(); this.closest('form').submit();" class="nav-link">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                </form>
+            </li>
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+
+        
+    
+<!-- Main Sidebar Container End -->
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <div wire:id="8HFSx7LWvPDCbRC3alrN" wire:initial-data="{&quot;fingerprint&quot;:{&quot;id&quot;:&quot;8HFSx7LWvPDCbRC3alrN&quot;,&quot;name&quot;:&quot;student.my-profile&quot;,&quot;locale&quot;:&quot;en&quot;,&quot;path&quot;:&quot;student\/my-profile&quot;,&quot;method&quot;:&quot;GET&quot;,&quot;v&quot;:&quot;acj&quot;},&quot;effects&quot;:{&quot;listeners&quot;:[]},&quot;serverMemo&quot;:{&quot;children&quot;:[],&quot;errors&quot;:[],&quot;htmlHash&quot;:&quot;1d9f2a5b&quot;,&quot;data&quot;:[],&quot;dataMeta&quot;:[],&quot;checksum&quot;:&quot;a3d1a9c21f1f5e7e40baf0e767650b2990a381945048dc9a9ce3aab5b870a622&quot;}}">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            <h1 class="m-0">Student Profile</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="https://admission.veritas.edu.ng/student/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active">my-profile</li>
+            </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card  card-primary card-outline">
+                            <!-- /.card-header -->
+                            <div class="card-header">
+                                <h5>Personal Information</h5>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- /.card-body -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                <table class="table table-hover table-bordered table-striped">
+                                    <tbody>
+
+                                        <tr>
+                                            <td><b>First Name </b></td>
+                                            <td> ANJOLAOLUWA </td>
+
+                                            <td><b>Middle Name </b></td>
+                                            <td> MARTINS </td>
+
+                                            <td><b>Last Name </b></td>
+                                            <td> ABIOLA </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Title </b></td>
+                                            <td> </td>
+
+                                            <td><b>Gender </b></td>
+                                            <td>Male </td>
+
+                                            <td><b>Date of Birth </b></td>
+                                            <td> 2005-02-11</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Nationality </b></td>
+                                            <td> Nigeria</td>
+
+                                            <td><b>Religion </b></td>
+                                            <td> Christian(Non-Catholic)</td>
+
+                                            <td><b>Marital Status </b></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Phone Number </b></td>
+                                            <td> 08025285458 </td>
+
+                                            <td><b>Email </b></td>
+                                            <td> martinsanjola7@gmail.com</td>
+
+                                            <td><b>State of Origin </b></td>
+                                            <td>Ogun </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b> Local Govt. Area </b></td>
+                                            <td>Abeokuta North </td>
+
+                                            <td><b>Residence City </b></td>
+                                            <td>Plot3/130b River Park Estate, Lugbe, Abuja </td>
+
+                                            <td><b>Veritas Email </b></td>
+                                            <td> vug/ceg/20/4056@eng.veritas.edu.ng</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b> Hobbies</b></td>
+                                            <td>FOOTBALL </td>
+
+                                            <td><b>Residence Address </b></td>
+                                            <td colspan="3"> </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                        <div class="card  card-primary card-outline">
+                            <!-- /.card-header -->
+                            <div class="card-header">
+                                <h5>Sponsor's Contact</h5>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- /.card-body -->
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                <table class="table table-hover table-bordered table-striped">
+                                    <tbody>
+
+                                        <tr>
+                                            <td><b>Full Name </b></td>
+                                            <td>Mr ABIOLA OLUKUNLE MOSES</td>
+
+                                            <td><b>Phone No </b></td>
+                                            <td> 08132228701</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>State</b></td>
+                                            <td>ABUJA</td>
+
+                                            <td><b>City </b></td>
+                                            <td> Lugbe</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Phone No </b></td>
+                                            <td> 08132228701</td>
+
+                                            <td><b>Email  </b></td>
+                                            <td> lannykus@yahoo.com, lannykus@yahoo.com </td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Relationship </b></td>
+                                            <td>Father </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                        <!-- /.card -->
+                    </div>
+
+                </div>
+            </div>
+                <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+</div>
+
+<!-- Livewire Component wire-end:8HFSx7LWvPDCbRC3alrN -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+    <footer class="main-footer no-print">
+    <!-- Default to the left -->
+    <div class="text-center">
+        <strong>Copyright &copy; Veritas University Abuja 2024 </strong>.
+    </div>
+
+</footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src=" https://admission.veritas.edu.ng/ui/plugins/jquery/jquery.min.js "></script>
+
+<script src=" https://admission.veritas.edu.ng/ui/plugins/multilevel-form/multi_level.js "></script>
+
+<!-- Bootstrap 4 -->
+<script src=" https://admission.veritas.edu.ng/ui/plugins/bootstrap/js/bootstrap.bundle.min.js "></script>
+
+<!-- AdminLTE App -->
+<script src="https://admission.veritas.edu.ng/ui/dist/js/adminlte.min.js"></script>
+
+<script type="text/javascript" src="https://admission.veritas.edu.ng/ui/plugins/toastr/toastr.min.js"></script>
+
+<!-- Select2 -->
+<script src="https://admission.veritas.edu.ng/ui/plugins/select2/js/select2.full.min.js "></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+
+
+<script>
+    $(document).ready(function(){
+
+            toastr.options = {
+                "positionClass": "toast-bottom-right",
+                "progressBar": true,
+            }
+
+            window.addEventListener('hide_form', event => {
+            $('#form').modal('hide');
+            toastr.success(event.detail.message, 'Success!')
+
+            })
+
+            window.addEventListener('hide_jamb_form', event => {
+            $('#form_jamb').modal('hide');
+            toastr.success(event.detail.message, 'Success!')
+
+            })
+
+            //TODO LIST.
+            toastr.options.onHidden = function()
+             {
+                 console.log('goodbye');
+            }
+
+/*             $('#confirmationModal2').modal({
+                backdrop: 'static',
+                keyboard: false
+            }) */
+
+    });
+
+</script>
+
+<script>
+
+    window.addEventListener('show_form', event => {
+        $('#form').modal('show');
+    })
+
+    window.addEventListener('show_jamb_form', event => {
+        $('#form_jamb').modal('show');
+    })
+
+    window.addEventListener('show-delete-modal', event => {
+        $('#confirmationModal').modal('show');
+    })
+
+    window.addEventListener('hide-delete-modal', event => {
+        $('#confirmationModal').modal('hide');
+        toastr.success(event.detail.message, 'Success!')
+    })
+
+    window.addEventListener('show-end-modal', event => {
+        $('#confirmationModal2').modal('show');
+    })
+
+    window.addEventListener('hide-end-modal', event => {
+        $('#confirmationModal2').modal('hide');
+        toastr.success(event.detail.message, 'Success!')
+    })
+
+    window.addEventListener('show-publish-modal', event => {
+        $('#confirmationModal3').modal('show');
+    })
+
+    window.addEventListener('hide-publish-modal', event => {
+        $('#confirmationModal3').modal('hide');
+        toastr.success(event.detail.message, 'Success!')
+    })
+
+    window.addEventListener('show-process-modal', event => {
+        $('#confirmationModal4').modal('show');
+    })
+
+    window.addEventListener('hide-process-modal', event => {
+        $('#confirmationModal4').modal('hide');
+        toastr.success(event.detail.message, 'Success!')
+    })
+
+</script>
+
+
+<!-- Livewire Scripts -->
+
+<script src="/livewire/livewire.js?id=c69d0f2801c01fcf8166" data-turbo-eval="false" data-turbolinks-eval="false" ></script>
+<script data-turbo-eval="false" data-turbolinks-eval="false" >
+    if (window.livewire) {
+	    console.warn('Livewire: It looks like Livewire\'s @livewireScripts JavaScript assets have already been loaded. Make sure you aren\'t loading them twice.')
+	}
+
+    window.livewire = new Livewire();
+    window.livewire.devTools(true);
+    window.Livewire = window.livewire;
+    window.livewire_app_url = '';
+    window.livewire_token = 'EIjD3pMjLPZZZog0aD0qQwqwBeyYRmIvbpkx8FeN';
+
+	/* Make sure Livewire loads first. */
+	if (window.Alpine) {
+	    /* Defer showing the warning so it doesn't get buried under downstream errors. */
+	    document.addEventListener("DOMContentLoaded", function () {
+	        setTimeout(function() {
+	            console.warn("Livewire: It looks like AlpineJS has already been loaded. Make sure Livewire\'s scripts are loaded before Alpine.\\n\\n Reference docs for more info: http://laravel-livewire.com/docs/alpine-js")
+	        })
+	    });
+	}
+
+	/* Make Alpine wait until Livewire is finished rendering to do its thing. */
+    window.deferLoadingAlpine = function (callback) {
+        window.addEventListener('livewire:load', function () {
+            callback();
+        });
+    };
+
+    let started = false;
+
+    window.addEventListener('alpine:initializing', function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (! started) {
+            window.livewire.start();
+
+            started = true;
+        }
+    });
+</script>
+
+</body>
+</html>
